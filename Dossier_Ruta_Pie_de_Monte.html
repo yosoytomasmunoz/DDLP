@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Concesión Vial Ruta Pie de Monte — Dossier Ejecutivo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:     #0D1B2A;
+  --blue:    #0A4FA6;
+  --blueM:   #1564C0;
+  --blueLt:  #EBF2FF;
+  --blueBdr: #93BCF5;
+  --teal:    #056860;
+  --tealLt:  #E4F4F2;
+  --tealBdr: #80C5BF;
+  --amber:   #8A4800;
+  --amberLt: #FEF3E2;
+  --amberBdr:#EFA940;
+  --coral:   #8B2E1A;
+  --coralLt: #FDF0EC;
+  --coralBdr:#E8917A;
+  --muted:   #566573;
+  --sub:     #99A8B8;
+  --border:  #DDE4EE;
+  --bg:      #F4F7FB;
+  --white:   #FFFFFF;
+  --accent:  #E63C20;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:15px;scroll-behavior:smooth}
+body{
+  font-family:'Instrument Sans',sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.6;
+}
+
+/* ── HERO ───────────────────────────────────────────────────────────────── */
+.hero{
+  background:var(--ink);
+  position:relative;
+  overflow:hidden;
+  padding:0;
+}
+.hero::before{
+  content:'';
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 70% 40%, #0A4FA620, transparent),
+             radial-gradient(ellipse 50% 80% at 10% 80%, #05686020, transparent);
+  pointer-events:none;
+}
+.hero-inner{
+  max-width:1280px;margin:0 auto;
+  padding:3.5rem 2rem 2.5rem;
+  display:grid;grid-template-columns:1fr auto;
+  align-items:end;gap:2rem;
+}
+.hero-eyebrow{
+  font-family:'DM Mono',monospace;
+  font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;
+  color:#6A98C8;margin-bottom:.9rem;
+  display:flex;align-items:center;gap:.5rem;
+}
+.hero-eyebrow::before{
+  content:'';display:block;width:28px;height:1.5px;background:#1564C0;
+}
+.hero-title{
+  font-family:'Syne',sans-serif;
+  font-size:clamp(2rem,4.5vw,3.4rem);
+  font-weight:800;
+  color:var(--white);
+  line-height:1.08;
+  letter-spacing:-.02em;
+  margin-bottom:1rem;
+}
+.hero-title .accent{color:#5EA8FF;}
+.hero-sub{
+  font-size:1.05rem;color:#9DB5CF;
+  max-width:560px;line-height:1.65;
+  margin-bottom:1.8rem;
+}
+.hero-chips{display:flex;gap:.5rem;flex-wrap:wrap}
+.hchip{
+  display:inline-flex;align-items:center;gap:.35rem;
+  font-size:.8rem;font-weight:600;
+  padding:.28rem .75rem;border-radius:20px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.14);
+  color:#C8D9EC;
+}
+.hchip .dot{width:6px;height:6px;border-radius:50%;background:#5EA8FF}
+
+.hero-kpi-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:12px;overflow:hidden;
+  align-self:stretch;
+}
+.hero-kpi{
+  background:rgba(10,20,36,.55);backdrop-filter:blur(6px);
+  padding:1.1rem 1.3rem;
+}
+.hero-kpi-val{
+  font-family:'Syne',sans-serif;
+  font-size:1.55rem;font-weight:700;
+  color:var(--white);line-height:1;
+  margin-bottom:.2rem;
+}
+.hero-kpi-val sup{font-size:.8em;color:#5EA8FF}
+.hero-kpi-lbl{font-size:.72rem;color:#6A98C8;letter-spacing:.06em;text-transform:uppercase}
+
+/* nav bar */
+.nav-bar{
+  background:var(--ink);border-top:1px solid rgba(255,255,255,.08);
+  position:sticky;top:0;z-index:100;
+}
+.nav-inner{
+  max-width:1280px;margin:0 auto;
+  padding:.6rem 2rem;
+  display:flex;gap:0;overflow-x:auto;scrollbar-width:none;
+}
+.nav-inner::-webkit-scrollbar{display:none}
+.nav-link{
+  font-family:'DM Mono',monospace;font-size:.72rem;
+  letter-spacing:.07em;text-transform:uppercase;
+  color:#6A98C8;text-decoration:none;
+  padding:.4rem .85rem;border-radius:4px;
+  white-space:nowrap;transition:all .18s;
+  border:none;background:none;cursor:pointer;
+}
+.nav-link:hover{color:var(--white);background:rgba(255,255,255,.07)}
+
+/* ── MAIN LAYOUT ─────────────────────────────────────────────────────────── */
+.page{max-width:1280px;margin:0 auto;padding:2.5rem 2rem 5rem}
+
+section{margin-bottom:3.5rem;scroll-margin-top:80px}
+
+.section-header{
+  display:flex;align-items:baseline;gap:1rem;
+  margin-bottom:1.6rem;
+  padding-bottom:.75rem;
+  border-bottom:1.5px solid var(--border);
+}
+.section-num{
+  font-family:'DM Mono',monospace;font-size:.72rem;
+  color:var(--sub);letter-spacing:.1em;
+}
+.section-title{
+  font-family:'Syne',sans-serif;
+  font-size:1.35rem;font-weight:700;
+  color:var(--ink);letter-spacing:-.01em;
+}
+.section-tag{
+  margin-left:auto;font-size:.72rem;font-weight:600;
+  padding:.25rem .7rem;border-radius:4px;
+  letter-spacing:.06em;text-transform:uppercase;
+}
+
+/* ── CARD SYSTEM ──────────────────────────────────────────────────────────── */
+.cards{display:grid;gap:1rem}
+.cards-2{grid-template-columns:1fr 1fr}
+.cards-3{grid-template-columns:1fr 1fr 1fr}
+.cards-4{grid-template-columns:1fr 1fr 1fr 1fr}
+
+.card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:12px;padding:1.25rem 1.4rem;
+  position:relative;overflow:hidden;
+}
+.card-accent{
+  position:absolute;top:0;left:0;right:0;height:3px;
+}
+.card-kv .kv-val{
+  font-family:'Syne',sans-serif;
+  font-size:1.6rem;font-weight:700;color:var(--ink);
+  line-height:1;margin-bottom:.25rem;
+}
+.card-kv .kv-label{font-size:.75rem;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+.card-kv .kv-sub{font-size:.82rem;color:var(--sub);margin-top:.3rem;line-height:1.4}
+
+.card-h{
+  font-family:'Syne',sans-serif;
+  font-size:.92rem;font-weight:700;
+  color:var(--ink);margin-bottom:.6rem;
+}
+.card p{font-size:.88rem;color:var(--muted);line-height:1.65}
+
+/* Tag chips on cards */
+.tag{
+  display:inline-block;font-size:.7rem;font-weight:600;
+  letter-spacing:.05em;text-transform:uppercase;
+  padding:.2rem .55rem;border-radius:4px;margin-bottom:.55rem;
+}
+.tag-blue {background:var(--blueLt);color:var(--blue)}
+.tag-teal {background:var(--tealLt);color:var(--teal)}
+.tag-amber{background:var(--amberLt);color:var(--amber)}
+.tag-coral{background:var(--coralLt);color:var(--coral)}
+
+/* ── KPI ROW ─────────────────────────────────────────────────────────────── */
+.kpi-row{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);border-radius:12px;overflow:hidden;
+  margin-bottom:1.4rem;
+}
+.kpi-cell{
+  background:var(--white);padding:1.1rem 1.25rem;
+}
+.kpi-cell-val{
+  font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:700;
+  color:var(--ink);line-height:1;margin-bottom:.2rem;
+}
+.kpi-cell-lbl{font-size:.72rem;color:var(--muted);letter-spacing:.05em;text-transform:uppercase}
+
+/* ── TABLE ────────────────────────────────────────────────────────────────── */
+.tbl{width:100%;border-collapse:collapse;font-size:.84rem}
+.tbl th{
+  font-family:'DM Mono',monospace;font-size:.7rem;
+  letter-spacing:.07em;text-transform:uppercase;
+  color:var(--muted);background:#F8FAFB;
+  padding:.65rem .9rem;border-bottom:1.5px solid var(--border);
+  text-align:left;font-weight:500;
+}
+.tbl td{
+  padding:.6rem .9rem;border-bottom:1px solid var(--border);
+  color:var(--ink);vertical-align:top;
+}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:hover td{background:#FAFBFD}
+.tbl-wrap{background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+
+/* ── RISK TABLE ────────────────────────────────────────────────────────────── */
+.risk-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:middle}
+.risk-priv{background:#0A4FA6}
+.risk-pub {background:#056860}
+.risk-share{background:#EFA940}
+
+/* ── TIMELINE ─────────────────────────────────────────────────────────────── */
+.timeline{display:flex;flex-direction:column;gap:0;position:relative}
+.timeline::before{
+  content:'';position:absolute;left:24px;top:8px;bottom:8px;
+  width:2px;background:var(--border);
+}
+.tl-item{
+  display:grid;grid-template-columns:50px 1fr;
+  gap:.75rem;align-items:start;
+  padding-bottom:1.4rem;position:relative;
+}
+.tl-item:last-child{padding-bottom:0}
+.tl-dot{
+  width:14px;height:14px;border-radius:50%;
+  margin-top:.35rem;flex-shrink:0;
+  border:2.5px solid var(--white);
+  box-shadow:0 0 0 2px currentColor;
+  justify-self:center;position:relative;z-index:1;
+}
+.tl-dot.blue {color:var(--blue);background:var(--blue)}
+.tl-dot.teal {color:var(--teal);background:var(--teal)}
+.tl-dot.amber{color:var(--amber);background:var(--amberBdr)}
+.tl-dot.end  {color:var(--ink);background:var(--ink)}
+.tl-label{font-size:.72rem;font-family:'DM Mono',monospace;color:var(--sub);letter-spacing:.05em}
+.tl-title{font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;color:var(--ink);margin-bottom:.2rem}
+.tl-desc{font-size:.82rem;color:var(--muted);line-height:1.6}
+
+/* ── OBRAS GRID ────────────────────────────────────────────────────────────── */
+.obras-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.obra-item{
+  display:flex;gap:.85rem;align-items:flex-start;
+  background:var(--white);border:1px solid var(--border);
+  border-radius:10px;padding:1rem 1.1rem;
+}
+.obra-icon{
+  width:34px;height:34px;border-radius:8px;
+  background:var(--blueLt);color:var(--blue);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.1rem;flex-shrink:0;
+}
+.obra-title{font-size:.88rem;font-weight:600;color:var(--ink);margin-bottom:.2rem;line-height:1.3}
+.obra-desc{font-size:.79rem;color:var(--muted);line-height:1.5}
+
+/* ── SECTOR BAND ───────────────────────────────────────────────────────────── */
+.sector-band{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:1rem;margin-bottom:1.2rem;
+}
+.s-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:12px;padding:1.2rem 1.4rem;
+  position:relative;
+}
+.s-card .s-num{
+  font-family:'DM Mono',monospace;
+  font-size:.68rem;letter-spacing:.1em;color:var(--sub);
+  margin-bottom:.35rem;
+}
+.s-card .s-title{
+  font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;
+  color:var(--ink);margin-bottom:.45rem;
+}
+.s-card .s-km{
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:1.85rem;color:var(--blue);line-height:1;
+}
+.s-card .s-route{font-size:.82rem;color:var(--muted);margin-top:.25rem;line-height:1.5}
+
+/* ── PEAJE TABLE ───────────────────────────────────────────────────────────── */
+.peaje-row{display:flex;align-items:center;justify-content:space-between;
+  padding:.65rem 1rem;border-bottom:1px solid var(--border);}
+.peaje-row:last-child{border-bottom:none}
+.peaje-row .pr-id{
+  font-family:'DM Mono',monospace;font-size:.72rem;
+  color:var(--muted);min-width:80px;
+}
+.peaje-row .pr-desc{font-size:.85rem;color:var(--ink);flex:1;padding:0 .75rem}
+.peaje-row .pr-val{
+  font-family:'Syne',sans-serif;font-weight:700;
+  font-size:1rem;color:var(--blue);min-width:60px;text-align:right;
+}
+.peaje-sector-header{
+  background:#F8FAFB;padding:.5rem 1rem;
+  font-family:'DM Mono',monospace;font-size:.68rem;
+  letter-spacing:.1em;color:var(--muted);text-transform:uppercase;
+  border-bottom:1px solid var(--border);
+}
+
+/* ── AMBIENTAL / TERRITORIAL ─────────────────────────────────────────────── */
+.env-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem}
+.env-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:10px;padding:1.1rem;
+}
+.env-card-icon{font-size:1.4rem;margin-bottom:.55rem}
+.env-card-title{font-family:'Syne',sans-serif;font-size:.9rem;font-weight:700;color:var(--ink);margin-bottom:.4rem}
+.env-card-body{font-size:.8rem;color:var(--muted);line-height:1.65}
+
+/* ── RESPONSIBILITIES ────────────────────────────────────────────────────── */
+.resp-list{display:flex;flex-direction:column;gap:.5rem}
+.resp-item{
+  display:flex;gap:.75rem;align-items:flex-start;
+  padding:.7rem 1rem;
+  background:var(--white);border:1px solid var(--border);
+  border-radius:8px;
+}
+.resp-bullet{
+  width:6px;height:6px;border-radius:50%;
+  background:var(--blue);flex-shrink:0;margin-top:.55rem;
+}
+.resp-text{font-size:.85rem;color:var(--ink);line-height:1.6}
+.resp-text strong{color:var(--blue)}
+
+/* ── FOOTER ────────────────────────────────────────────────────────────────── */
+.footer{
+  background:var(--ink);color:#6A98C8;
+  font-size:.75rem;text-align:center;
+  padding:1.5rem 2rem;
+  line-height:1.7;
+}
+
+/* Responsive */
+@media(max-width:860px){
+  .hero-inner{grid-template-columns:1fr}
+  .hero-kpi-grid{grid-template-columns:repeat(4,1fr)}
+  .cards-2,.cards-3,.cards-4{grid-template-columns:1fr 1fr}
+  .obras-grid,.sector-band,.env-grid{grid-template-columns:1fr}
+  .kpi-row{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:560px){
+  .cards-2,.cards-3,.cards-4,.kpi-row{grid-template-columns:1fr}
+}
+
+/* Animations */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.hero-inner>*{animation:fadeUp .55s ease both}
+.hero-inner>*:nth-child(2){animation-delay:.12s}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════ HERO ══ -->
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">
+        Dirección General de Concesiones — MOP · Región del Biobío
+      </div>
+      <h1 class="hero-title">
+        Concesión Vial<br>
+        <span class="accent">Ruta Pie de Monte</span>
+      </h1>
+      <p class="hero-sub">
+        Nueva ruta vial de 20 km entre San Pedro de la Paz y Coronel, al pie de la Cordillera Nahuelbuta, que descongestiona la Ruta 160 y conecta el Gran Concepción con estándar de vía concesionada y peaje electrónico Multi Lane Free Flow.
+      </p>
+      <div class="hero-chips">
+        <span class="hchip"><span class="dot"></span>Licitación Internacional</span>
+        <span class="hchip"><span class="dot"></span>Greenfield · 20 km</span>
+        <span class="hchip"><span class="dot"></span>Provincia de Concepción</span>
+        <span class="hchip"><span class="dot"></span>Plazo máximo 45 años</span>
+      </div>
+    </div>
+    <div class="hero-kpi-grid">
+      <div class="hero-kpi">
+        <div class="hero-kpi-val">UF 9,1M</div>
+        <div class="hero-kpi-lbl">Presupuesto oficial</div>
+      </div>
+      <div class="hero-kpi">
+        <div class="hero-kpi-val">~$660M</div>
+        <div class="hero-kpi-lbl">USD referencial</div>
+      </div>
+      <div class="hero-kpi">
+        <div class="hero-kpi-val">44</div>
+        <div class="hero-kpi-lbl">Meses construcción</div>
+      </div>
+      <div class="hero-kpi">
+        <div class="hero-kpi-val">5</div>
+        <div class="hero-kpi-lbl">Puntos de cobro</div>
+      </div>
+      <div class="hero-kpi">
+        <div class="hero-kpi-val">UF 18,9M</div>
+        <div class="hero-kpi-lbl">ITC máx. Tramo A</div>
+      </div>
+      <div class="hero-kpi">
+        <div class="hero-kpi-val">ITC/S</div>
+        <div class="hero-kpi-lbl">Factores licitación</div>
+      </div>
+      <div class="hero-kpi">
+        <div class="hero-kpi-val">Oct 2025</div>
+        <div class="hero-kpi-lbl">Apertura económica</div>
+      </div>
+      <div class="hero-kpi">
+        <div class="hero-kpi-val">MLFF</div>
+        <div class="hero-kpi-lbl">Tecnología peaje</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav-bar">
+  <div class="nav-inner">
+    <a class="nav-link" href="#proyecto">Proyecto</a>
+    <a class="nav-link" href="#obras">Obras</a>
+    <a class="nav-link" href="#economicas">Condiciones Económicas</a>
+    <a class="nav-link" href="#tarifas">Tarifas</a>
+    <a class="nav-link" href="#plazos">Plazos</a>
+    <a class="nav-link" href="#riesgos">Distribución de Riesgos</a>
+    <a class="nav-link" href="#ambiental">Ambiental y Territorial</a>
+    <a class="nav-link" href="#responsabilidades">Responsabilidades</a>
+  </div>
+</nav>
+
+<div class="page">
+
+<!-- ══════════════════════════════════════ 1. PROYECTO ══ -->
+<section id="proyecto">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">El Proyecto</h2>
+    <span class="section-tag tag-blue">Descripción General</span>
+  </div>
+
+  <div class="sector-band">
+    <div class="s-card" style="border-top:3px solid var(--blue)">
+      <div class="s-num">SECTOR A</div>
+      <div class="s-title">Conexión Puente Industrial – Enlace Junquillar</div>
+      <div class="s-km">7,77 km</div>
+      <div class="s-route">Dm 0.000 → Dm 7.770 · San Pedro de la Paz<br>
+        2 puntos de cobro: Troncal A.1 y A.2</div>
+    </div>
+    <div class="s-card" style="border-top:3px solid var(--teal)">
+      <div class="s-num">SECTOR B</div>
+      <div class="s-title">Enlace Junquillar – Conexión Ruta 160 (Coronel)</div>
+      <div class="s-km">12,23 km</div>
+      <div class="s-route">Dm 7.770 → Dm 20.000 · San Pedro de la Paz / Coronel<br>
+        3 puntos de cobro: Troncal B.1, B.2 y B.3</div>
+    </div>
+  </div>
+
+  <div class="cards cards-3">
+    <div class="card">
+      <div class="tag tag-blue">Contexto</div>
+      <div class="card-h">¿Por qué se necesita?</div>
+      <p>Las comunas de San Pedro de la Paz y Coronel han experimentado un crecimiento poblacional significativo. La Ruta 160 existente es insuficiente, generando problemas de conectividad, tráfico y seguridad vial. Este proyecto otorga a la Ruta 160 un carácter urbano, eliminando el paso de camiones y tráfico de larga distancia.</p>
+    </div>
+    <div class="card">
+      <div class="tag tag-teal">Conectividad</div>
+      <div class="card-h">Interconexión con red concesionada</div>
+      <p>El proyecto conecta al norte con la <strong>Concesión Vial Puente Industrial</strong> y al sur con la <strong>Concesión Ruta 160 Tramo Tres Pinos – Acceso Norte a Coronel</strong>, integrándose a la red concesionada del Gran Concepción e incluyendo obras de interconexión explícitas en los Antecedentes Referenciales.</p>
+    </div>
+    <div class="card">
+      <div class="tag tag-amber">Diseño</div>
+      <div class="card-h">Estándar vial y seguridad</div>
+      <p>Doble calzada, 2 pistas por sentido. Incluye señalización variable, iluminación, cruces a desnivel en principales intersecciones, vías de evacuación ante tsunamis y paisajismo. El trazado se desarrolla por el borde de la Cordillera de Nahuelbuta, al oriente de la Ruta 160.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ 2. OBRAS ══ -->
+<section id="obras">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Principales Obras</h2>
+    <span class="section-tag tag-teal">Scope of Work</span>
+  </div>
+
+  <div class="obras-grid">
+    <div class="obra-item">
+      <div class="obra-icon">🛣️</div>
+      <div>
+        <div class="obra-title">Calzada doble · 2 pistas por sentido</div>
+        <div class="obra-desc">20 km de nueva ruta vial con estándar de vía concesionada. Incluye vías locales y veredas peatonales en tramos del trazado.</div>
+      </div>
+    </div>
+    <div class="obra-item">
+      <div class="obra-icon">🌉</div>
+      <div>
+        <div class="obra-title">Estructuras y obras de arte</div>
+        <div class="obra-desc">Intersecciones desniveladas (enlaces), pasos inferiores y superiores, pasarelas peatonales (Los Batros, Llacolén, Villa Bicentenario, Villa Santa María de Lagunillas) y obras de interconexión con vías concesionadas adyacentes.</div>
+      </div>
+    </div>
+    <div class="obra-item">
+      <div class="obra-icon">🚦</div>
+      <div>
+        <div class="obra-title">Seguridad vial y señalización</div>
+        <div class="obra-desc">Señalización variable y fija de tránsito, elementos de seguridad, iluminación de la ruta y tratamiento de taludes. Rutas de evacuación ante tsunamis integradas al diseño.</div>
+      </div>
+    </div>
+    <div class="obra-item">
+      <div class="obra-icon">💧</div>
+      <div>
+        <div class="obra-title">Saneamiento y drenaje</div>
+        <div class="obra-desc">Mejoramiento, construcción y ampliación de sistemas de saneamiento, drenaje pluvial y atraviesos con rutas existentes y cruces ferroviarios.</div>
+      </div>
+    </div>
+    <div class="obra-item">
+      <div class="obra-icon">📡</div>
+      <div>
+        <div class="obra-title">Sistema de cobro Multi Lane Free Flow</div>
+        <div class="obra-desc">Peaje electrónico 100% sin barreras desde la primera puesta en servicio provisoria. 5 pórticos (2 Sector A, 3 Sector B) con tecnología TAG/Transponder interoperable con la red nacional de concesiones.</div>
+      </div>
+    </div>
+    <div class="obra-item">
+      <div class="obra-icon">🌿</div>
+      <div>
+        <div class="obra-title">Paisajismo y áreas verdes</div>
+        <div class="obra-desc">Obras de paisajismo, cierros perimetrales, cercos y áreas de servicios generales y atención de emergencias. Plan de Manejo de Áreas Verdes Sostenible obligatorio.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top:1rem;padding:.9rem 1.1rem;background:var(--blueLt);border:1px solid var(--blueBdr);border-radius:8px;font-size:.84rem;color:var(--blue);line-height:1.65">
+    <strong>Nota:</strong> A partir de la PSP parcial del sector respectivo, quedan excluidas del contrato: ramal sur poniente del Enlace Los Batros, Pasarela Los Batros, reposición calzada oriente Ruta 160 (Dm 18.900–19.200), Pasarelas Villa Santa María de Lagunillas, Llacolén y Villa Bicentenario. Estas obras se traspasan al estado de la Concesión Ruta 160.
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ 3. CONDICIONES ECONÓMICAS ══ -->
+<section id="economicas">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Condiciones Económicas</h2>
+    <span class="section-tag tag-blue">Estructura Financiera</span>
+  </div>
+
+  <div class="kpi-row">
+    <div class="kpi-cell">
+      <div class="kpi-cell-val">UF 9.145.000</div>
+      <div class="kpi-cell-lbl">Presupuesto oficial estimado</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-cell-val">UF 18.915.000</div>
+      <div class="kpi-cell-lbl">ITC máximo Tramo A</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-cell-val">$66.200 M</div>
+      <div class="kpi-cell-lbl">Capital social mínimo (CLP)</div>
+    </div>
+    <div class="kpi-cell">
+      <div class="kpi-cell-val">540 meses</div>
+      <div class="kpi-cell-lbl">Plazo máximo concesión</div>
+    </div>
+  </div>
+
+  <div class="cards cards-2" style="margin-bottom:1rem">
+    <div class="card" style="border-left:3px solid var(--blue)">
+      <div class="card-accent" style="background:var(--blue)"></div>
+      <div class="tag tag-blue">Tramo A — Sin subsidio</div>
+      <div class="card-h">Factor: ITC (Ingresos Totales de la Concesión)</div>
+      <p>El licitante oferta el monto de ITC que espera percibir (VP, en UF). Rango: <strong>0 ≤ ITC ≤ UF 18.915.000</strong>. Sin subsidio estatal (S=0). Gana quien oferta el <strong>menor ITC</strong> (mayor puntaje). Mecanismo de plazo variable: la concesión se extingue cuando VPIm ≥ ITC.</p>
+    </div>
+    <div class="card" style="border-left:3px solid var(--teal)">
+      <div class="card-accent" style="background:var(--teal)"></div>
+      <div class="tag tag-teal">Tramo B — Con subsidio</div>
+      <div class="card-h">Factor: S (Factor de Subsidio a la construcción)</div>
+      <p>ITC fijo en <strong>UF 18.915.000</strong>. El licitante oferta factor S (0 &lt; S ≤ 1,000) que multiplica las cuotas de subsidio. El Estado paga hasta 17 cuotas anuales con base en S × tabla fija. El Tramo B solo aplica si ningún licitante postula al Tramo A.</p>
+    </div>
+  </div>
+
+  <div class="cards cards-3">
+    <div class="card">
+      <div class="tag tag-blue">Capital Social</div>
+      <div class="card-h">Equity requerido</div>
+      <p>Capital mínimo total: <strong>$66.200 millones CLP</strong>. Primer pago al constituir sociedad: <strong>$13.240 millones</strong>. Saldo en máximo 36 meses. Prohibido reducir capital durante construcción.</p>
+    </div>
+    <div class="card">
+      <div class="tag tag-amber">Garantías</div>
+      <div class="card-h">Boletas y pólizas exigidas</div>
+      <p>Garantía construcción: <strong>UF 465.000</strong>. Reducible por avances (30%/50%/80%). Garantía explotación unificada: <strong>UF 280.000</strong>. Más garantía adicional y pólizas de responsabilidad civil y catástrofe.</p>
+    </div>
+    <div class="card">
+      <div class="tag tag-teal">Subsidio a la Construcción</div>
+      <div class="card-h">Hasta 17 cuotas anuales (Tramo B)</div>
+      <p>Cuotas 1–3 ligadas a hitos de obra (50%, 80%, PSP), cuotas 4–17 anuales. Totales máximos: Sector A = S × ~2.995.422 UF; Sector B = S × ~6.369.044 UF. Pago condicionado a aprobación del inspector fiscal.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:1rem">
+    <div class="tbl-wrap">
+      <div class="peaje-sector-header">Expropiaciones — Umbral de riesgo compartido</div>
+      <table class="tbl">
+        <thead>
+          <tr>
+            <th>Concepto</th><th>Cargo concesionaria</th><th>Cargo MOP</th><th>Referencia</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Costos de expropiaciones (base)</td>
+            <td>Hasta UF 2.770.000</td>
+            <td>Exceso sobre UF 2.770.000</td>
+            <td>Art. 1.13.1.3</td>
+          </tr>
+          <tr>
+            <td>Entrega del 80% de terrenos</td>
+            <td>—</td>
+            <td>18 meses desde aprobación antecedentes</td>
+            <td>Art. 1.8.3</td>
+          </tr>
+          <tr>
+            <td>Entrega del 100% de terrenos</td>
+            <td>—</td>
+            <td>22 meses desde aprobación antecedentes</td>
+            <td>Art. 1.8.3</td>
+          </tr>
+          <tr>
+            <td>Atraso imputable al MOP</td>
+            <td>—</td>
+            <td>Extensión plazo construcción equivalente</td>
+            <td>Art. 1.8.3</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ 4. TARIFAS ══ -->
+<section id="tarifas">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Estructura Tarifaria</h2>
+    <span class="section-tag tag-teal">Revenue Model</span>
+  </div>
+
+  <div class="cards cards-3" style="margin-bottom:1rem">
+    <div class="card card-kv">
+      <div class="card-accent" style="background:var(--blue)"></div>
+      <div class="tag tag-blue">Tecnología</div>
+      <div class="kv-val">MLFF</div>
+      <div class="kv-label">Multi Lane Free Flow</div>
+      <div class="kv-sub">Telepeaje sin barreras desde la primera PSP parcial. Interoperable con red TAG nacional. Pago Tardío de Transacciones (PTT) para usuarios poco frecuentes.</div>
+    </div>
+    <div class="card card-kv">
+      <div class="card-accent" style="background:var(--teal)"></div>
+      <div class="tag tag-teal">Estructura dinámica</div>
+      <div class="kv-val">TBFP / TBP</div>
+      <div class="kv-label">Fuera de punta / Punta</div>
+      <div class="kv-sub">Tarifa punta se activa cuando velocidad baja de 70 km/h en 12 días martes/miércoles/jueves seguidos (laboral) o 4 sábados/domingos seguidos. Revisión trimestral.</div>
+    </div>
+    <div class="card card-kv">
+      <div class="card-accent" style="background:var(--amber)"></div>
+      <div class="tag tag-amber">4 categorías</div>
+      <div class="kv-val">V1–V4</div>
+      <div class="kv-label">Tipos de vehículo</div>
+      <div class="kv-sub">V1: Autos y camionetas · V2: Buses y camiones · V3: Camiones con remolque · V4: Motos. Factor diferencial por categoría aplicado sobre T0.</div>
+    </div>
+  </div>
+
+  <div class="tbl-wrap">
+    <div class="peaje-sector-header">Puntos de cobro y tarifas base (Tarifa Base T₀ en $ noviembre 2024)</div>
+    <div class="peaje-sector-header" style="background:#EBF5F4;color:var(--teal)">Sector A — San Pedro de la Paz (7,77 km)</div>
+    <div class="peaje-row">
+      <div class="pr-id">Troncal A.1</div>
+      <div class="pr-desc">Entre Enlace Michaihue – Enlace 3 Poniente · Dm ~1.300</div>
+      <div class="pr-val">$249</div>
+    </div>
+    <div class="peaje-row">
+      <div class="pr-id">Troncal A.2</div>
+      <div class="pr-desc">Entre Enlace 3 Poniente – Enlace Junquillar · Dm ~3.200</div>
+      <div class="pr-val">$432</div>
+    </div>
+    <div class="peaje-sector-header" style="background:#EBF5F4;color:var(--teal)">Sector B — Junquillar – Coronel (12,23 km)</div>
+    <div class="peaje-row">
+      <div class="pr-id">Troncal B.1</div>
+      <div class="pr-desc">Entre Enlace Junquillar – Enlace La Mora · Dm ~8.400</div>
+      <div class="pr-val">$236</div>
+    </div>
+    <div class="peaje-row">
+      <div class="pr-id">Troncal B.2</div>
+      <div class="pr-desc">Entre Enlace La Mora – Enlace Escuadrón · Dm ~11.300</div>
+      <div class="pr-val">$445</div>
+    </div>
+    <div class="peaje-row" style="border-bottom:none">
+      <div class="pr-id">Troncal B.3</div>
+      <div class="pr-desc">Entre Enlace Escuadrón – Enlace Coronel · Dm ~16.000</div>
+      <div class="pr-val">$384</div>
+    </div>
+  </div>
+
+  <div style="margin-top:.75rem;font-size:.79rem;color:var(--muted);padding:.7rem 1rem;background:var(--white);border:1px solid var(--border);border-radius:8px;line-height:1.65">
+    <strong>Reajuste tarifario:</strong> La T₀ se reajusta el 1° de enero de cada año, o cuando la inflación acumulada desde el último reajuste sea ≥ 15%. Los factores por tipo de vehículo se aplican sobre T₀ según tabla 1.14.2.5. Los ingresos del VPI incluyen peajes, servicios complementarios y cobros por accesos a terceros.
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ 5. PLAZOS ══ -->
+<section id="plazos">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2 class="section-title">Plazos Clave</h2>
+    <span class="section-tag tag-amber">Cronograma</span>
+  </div>
+
+  <div class="cards cards-2" style="margin-bottom:1rem">
+    <div>
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-dot blue"></div>
+          <div>
+            <div class="tl-label">Hito 0</div>
+            <div class="tl-title">Inicio de la concesión</div>
+            <div class="tl-desc">Desde la publicación en Diario Oficial del decreto supremo de adjudicación. Comienza simultáneamente la etapa de construcción y el plazo de concesión.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot blue"></div>
+          <div>
+            <div class="tl-label">Mes 3</div>
+            <div class="tl-title">Entrega garantía de construcción</div>
+            <div class="tl-desc">UF 465.000 dentro de los 90 días del inicio. La sociedad concesionaria debe estar legalmente constituida en ese mismo plazo (60 días desde adjudicación).</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot teal"></div>
+          <div>
+            <div class="tl-label">Mes ~30–36</div>
+            <div class="tl-title">PSP parcial Sector A</div>
+            <div class="tl-desc">Puesta en servicio provisoria del Sector A (7,77 km). Inicio de cobro de peaje Troncal A.1 y A.2. Declaraciones de avance previas: 30%, 50%, 80%.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot teal"></div>
+          <div>
+            <div class="tl-label">Mes 44 máx.</div>
+            <div class="tl-title">PSP total (ambos sectores)</div>
+            <div class="tl-desc">Plazo máximo de <strong>44 meses</strong> desde inicio de obras para la PSP de la totalidad de la infraestructura. Inicio de cobro en los 5 puntos de cobro.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot teal"></div>
+          <div>
+            <div class="tl-label">PSP + 6 meses</div>
+            <div class="tl-title">Puesta en servicio definitiva</div>
+            <div class="tl-desc">Máximo 6 meses después de la PSP total para solicitar la PSD. A partir de ésta comienza el plazo de explotación definitivo y el cálculo formal del IMG.</div>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot end"></div>
+          <div>
+            <div class="tl-label">Fin de la concesión</div>
+            <div class="tl-title">Extinción: VPIm ≥ ITC o Mes 540</div>
+            <div class="tl-desc">La concesión se extingue cuando el Valor Presente de Ingresos acumulados supera el ITC ofertado, o al cumplirse el plazo máximo de 540 meses (45 años) desde el inicio.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="tbl-wrap" style="margin-bottom:1rem">
+        <table class="tbl">
+          <thead>
+            <tr><th>Obligación</th><th>Plazo</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Constitución sociedad concesionaria (SA)</td><td>60 días desde adjudicación</td></tr>
+            <tr><td>Entrega garantía de construcción</td><td>90 días desde inicio concesión</td></tr>
+            <tr><td>Entrega capital mínimo (20%)</td><td>En el acto constitutivo</td></tr>
+            <tr><td>Integración total del capital ($66.200 M)</td><td>Máx. 36 meses desde constitución</td></tr>
+            <tr><td>Inscripción en CMF</td><td>60 días desde constitución</td></tr>
+            <tr><td>Entrega PGS etapa construcción</td><td>90 días desde inicio concesión</td></tr>
+            <tr><td>Entrega Proyectos de Ingeniería de Detalle (vial)</td><td>Según Tabla N°4 (por sector)</td></tr>
+            <tr><td>Declaraciones de avance (30/50/80%)</td><td>Hitos por sector según Tabla N°5</td></tr>
+            <tr><td>PSP de la totalidad de las obras</td><td>Máx. 44 meses desde inicio obras</td></tr>
+            <tr><td>Puesta en servicio definitiva</td><td>Máx. 6 meses post PSP total</td></tr>
+            <tr><td>Transferencia de permisos al MOP</td><td>90 días desde extinción concesión</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="padding:.8rem 1rem;background:var(--amberLt);border:1px solid var(--amberBdr);border-radius:8px;font-size:.82rem;color:var(--amber);line-height:1.65">
+        ⚠ Los atrasos en Cambios de Servicios Existentes son de exclusiva responsabilidad del Concesionario y no generan derecho a extensión de plazos ni compensación. El plazo de entrega de terrenos por el MOP (18/22 meses) sí puede extender el plazo de construcción si es imputable al Estado.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ 6. RIESGOS ══ -->
+<section id="riesgos">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2 class="section-title">Distribución de Riesgos</h2>
+    <span class="section-tag tag-coral">Risk Allocation</span>
+  </div>
+
+  <div class="tbl-wrap" style="margin-bottom:1rem">
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th>Categoría de Riesgo</th>
+          <th>Asignación</th>
+          <th>Mecanismo de cobertura</th>
+          <th>Límite / Umbral</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Riesgo de demanda (tráfico)</strong></td>
+          <td><span class="risk-dot risk-share"></span>Compartido</td>
+          <td>IMG — Ingresos Mínimos Garantizados. El Estado cubre la brecha si ingresos &lt; Ymin,t y Yt &gt; 75% del Ingreso Potencial. Prima: UF 40.000 (2 cuotas de UF 20.000).</td>
+          <td>IMG año 1: UF 104.000, crece ~3% anual hasta año 20</td>
+        </tr>
+        <tr>
+          <td><strong>Riesgo de plazo de concesión</strong></td>
+          <td><span class="risk-dot risk-priv"></span>Concesionaria</td>
+          <td>Mecanismo VPI ≥ ITC (plazo variable). Concesión más larga si ingresos menores a lo esperado.</td>
+          <td>Tope: 540 meses. Sin indemnización por diferencia al cumplir plazo máximo.</td>
+        </tr>
+        <tr>
+          <td><strong>Medidas ambientales adicionales</strong> (construcción)</td>
+          <td><span class="risk-dot risk-share"></span>Compartido</td>
+          <td>Concesionaria asume hasta UF 220.000. Entre UF 220.000–300.000: 50/50. Sobre UF 300.000: descuenta del VPIm.</td>
+          <td>Umbral concesionaria: UF 220.000 · Tramo compartido: UF 80.000</td>
+        </tr>
+        <tr>
+          <td><strong>Cambios de Servicios Existentes</strong></td>
+          <td><span class="risk-dot risk-share"></span>Compartido</td>
+          <td>Concesionaria asume hasta UF 100.000. Entre UF 100.000–180.000: 50/50. Sobre UF 180.000: descuenta del VPIm.</td>
+          <td>Umbral concesionaria: UF 100.000 · Tramo compartido: UF 80.000</td>
+        </tr>
+        <tr>
+          <td><strong>Hallazgos arqueológicos</strong> (construcción)</td>
+          <td><span class="risk-dot risk-share"></span>Compartido</td>
+          <td>Concesionaria asume hasta UF 15.000. El exceso se descuenta del VPIm (Estado absorbe vía plazo mayor).</td>
+          <td>Umbral concesionaria: UF 15.000</td>
+        </tr>
+        <tr>
+          <td><strong>Expropiaciones</strong></td>
+          <td><span class="risk-dot risk-share"></span>Compartido</td>
+          <td>Concesionaria asume hasta UF 2.770.000. El exceso es de cargo del MOP.</td>
+          <td>Umbral: UF 2.770.000 para obras en Antecedentes Referenciales</td>
+        </tr>
+        <tr>
+          <td><strong>Diseño, construcción y operación</strong></td>
+          <td><span class="risk-dot risk-priv"></span>Concesionaria</td>
+          <td>La concesionaria asume íntegramente el riesgo de diseño, construcción y explotación conforme a Estándares Técnicos y Niveles de Servicio.</td>
+          <td>Sin compensación por hechos sobrevinientes (art. 1.13.3)</td>
+        </tr>
+        <tr>
+          <td><strong>Tipo de cambio</strong></td>
+          <td><span class="risk-dot risk-priv"></span>Concesionaria</td>
+          <td>Contratos en UF y CLP. Sin mecanismo explícito de cobertura cambiaria en este proyecto.</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td><strong>Catástrofe natural</strong></td>
+          <td><span class="risk-dot risk-share"></span>Compartido</td>
+          <td>Póliza de catástrofe obligatoria. Reducción de tarifa durante recuperación. VPIm se calcula con tarifa pre-catástrofe (no pierde ingresos del plazo).</td>
+          <td>Seguro cubre valor total de obras nuevas. Plazo reparación: máx. 10 meses desde aprobación proyecto.</td>
+        </tr>
+        <tr>
+          <td><strong>Entrega de terrenos MOP</strong></td>
+          <td><span class="risk-dot risk-pub"></span>Estado</td>
+          <td>Si el MOP no entrega el 80% en 18 meses o el 100% en 22 meses, otorga extensión equivalente del plazo de construcción.</td>
+          <td>Atraso MOP → extensión 1:1 de plazos de construcción</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div style="display:flex;gap:.6rem;flex-wrap:wrap;font-size:.79rem;color:var(--muted)">
+    <span><span class="risk-dot risk-priv"></span>Riesgo íntegro de la Concesionaria</span>
+    <span><span class="risk-dot risk-share"></span>Riesgo compartido (con umbral)</span>
+    <span><span class="risk-dot risk-pub"></span>Riesgo del Estado</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ 7. AMBIENTAL ══ -->
+<section id="ambiental">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <h2 class="section-title">Aspectos Ambientales y Territoriales</h2>
+    <span class="section-tag tag-teal">ESG · Territorio</span>
+  </div>
+
+  <div class="env-grid">
+    <div class="env-card" style="border-top:3px solid var(--teal)">
+      <div class="env-card-icon">📋</div>
+      <div class="env-card-title">EIA del Proyecto (obligatorio)</div>
+      <div class="env-card-body">La Concesionaria debe elaborar y someter al SEIA un EIA completo para todos los sectores, basándose en el <strong>EIA Referencial</strong> preparado por el MOP. El ingreso al SEIA es obligatorio incluso si no se configura tipología de ingreso obligatorio según DS N°40 de 2012. La RCA es condición previa a la construcción.</div>
+    </div>
+    <div class="env-card" style="border-top:3px solid var(--blue)">
+      <div class="env-card-icon">🌱</div>
+      <div class="env-card-title">Plan de Gestión Sustentable (PGS)</div>
+      <div class="env-card-body">El Concesionario debe elaborar e implementar el PGS para ambas etapas (construcción y explotación). Integra el Plan de Manejo Ambiental y Territorial Mínimo, el Programa PAC, el PIDU y los Manuales de Planes de Manejo Ambiental y de Áreas Verdes Sostenible del MOP.</div>
+    </div>
+    <div class="env-card" style="border-top:3px solid #5EA8FF">
+      <div class="env-card-icon">🏛️</div>
+      <div class="env-card-title">Hallazgos arqueológicos</div>
+      <div class="env-card-body">Riesgo compartido con umbral. La Concesionaria asume hasta <strong>UF 15.000</strong> en medidas de contingencia adicionales. El exceso descuenta del VPIm (el Estado absorbe el riesgo vía mayor plazo de concesión). Protocolo de reportes y aprobación por inspector fiscal.</div>
+    </div>
+    <div class="env-card" style="border-top:3px solid var(--amber)">
+      <div class="env-card-icon">👥</div>
+      <div class="env-card-title">Participación ciudadana e institucional</div>
+      <div class="env-card-body">Programa PAC y PIDU obligatorios para ambas etapas. Equipo mínimo: 1 encargado ambiental (≥5 años experiencia en obras viales) y 1 encargado territorial/PAC (≥5 años). Actividades presenciales, materiales con imagen MOP, cronograma e indicadores de seguimiento.</div>
+    </div>
+    <div class="env-card" style="border-top:3px solid var(--teal)">
+      <div class="env-card-icon">♻️</div>
+      <div class="env-card-title">Gestión de Huella de Carbono</div>
+      <div class="env-card-body">El Concesionario debe elaborar un Programa de Gestión de Huella de Carbono (PGHC) para construcción (dentro de 90 días del inicio) y explotación (90 días antes de la primera PSP parcial). Incluye medición de emisiones GEI directas e indirectas en CO₂ equivalente.</div>
+    </div>
+    <div class="env-card" style="border-top:3px solid var(--coral)">
+      <div class="env-card-icon">💧</div>
+      <div class="env-card-title">Medidas ambientales adicionales (RCA)</div>
+      <div class="env-card-body">Si la RCA del EIA del Proyecto establece medidas adicionales respecto al EIA Referencial, el costo se distribuye: Concesionaria hasta <strong>UF 220.000</strong>; tramo UF 220.000–300.000 a partes iguales; exceso sobre UF 300.000 descuenta del VPIm. Valorización por 2 estudios universitarios independientes.</div>
+    </div>
+  </div>
+
+  <div style="margin-top:1rem;padding:.9rem 1.1rem;background:var(--tealLt);border:1px solid var(--tealBdr);border-radius:8px;font-size:.83rem;color:var(--teal);line-height:1.65">
+    <strong>Avance territorial actual:</strong> El MOP ha desarrollado un EIA Referencial completo (Documento N°11 de las Bases) que sirve de base para el EIA del Proyecto. El concesionario puede hacer suyos los Antecedentes Referenciales o presentar Anteproyectos Alternativos, manteniendo en todo caso las exigencias territoriales y medioambientales mínimas.
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════ 8. RESPONSABILIDADES ══ -->
+<section id="responsabilidades">
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <h2 class="section-title">Principales Responsabilidades del Concesionario</h2>
+    <span class="section-tag tag-coral">Key Obligations</span>
+  </div>
+
+  <div class="cards cards-2">
+    <div>
+      <div class="card-h" style="font-family:'Syne',sans-serif;font-size:.85rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.75rem">Etapa de Construcción</div>
+      <div class="resp-list">
+        <div class="resp-item"><div class="resp-bullet" style="background:var(--blue)"></div>
+          <div class="resp-text"><strong>Proyectos de Ingeniería de Detalle:</strong> Elaborar y someter a aprobación del inspector fiscal todos los PIDs (vial, estructuras, cobro, etc.) en los plazos establecidos. Uso del Sistema BIM obligatorio.</div>
+        </div>
+        <div class="resp-item"><div class="resp-bullet" style="background:var(--blue)"></div>
+          <div class="resp-text"><strong>EIA del Proyecto:</strong> Desarrollar, someter al SEIA y obtener la RCA de todo el proyecto. Elaborar adendas y responder ICSARAs a su cargo.</div>
+        </div>
+        <div class="resp-item"><div class="resp-bullet" style="background:var(--blue)"></div>
+          <div class="resp-text"><strong>Expropiaciones:</strong> Preparar los antecedentes de expropiación (requerimientos mínimos DGC). El MOP expropia; la concesionaria elabora los estudios y asume costos hasta UF 2.770.000.</div>
+        </div>
+        <div class="resp-item"><div class="resp-bullet" style="background:var(--blue)"></div>
+          <div class="resp-text"><strong>Cambios de Servicios:</strong> Gestionar y ejecutar todos los cambios de instalaciones existentes (agua, electricidad, telecomunicaciones). Contabilidad separada y auditada.</div>
+        </div>
+        <div class="resp-item"><div class="resp-bullet" style="background:var(--blue)"></div>
+          <div class="resp-text"><strong>Declaraciones de avance:</strong> Emitir declaraciones formales al 30%, 50% y 80% de avance por sector, y solicitar PSP parciales en los plazos máximos establecidos.</div>
+        </div>
+        <div class="resp-item"><div class="resp-bullet" style="background:var(--blue)"></div>
+          <div class="resp-text"><strong>Programa PAC construcción:</strong> Implementar programa de participación ciudadana con actividades presenciales, material MOP, cronograma e indicadores. Encargado territorial dedicado.</div>
+        </div>
+        <div class="resp-item"><div class="resp-bullet" style="background:var(--blue)"></div>
+          <div class="resp-text"><strong>Revisor estructural independiente:</strong> Contratar revisor con ≥10 proyectos de estructuras viales aprobados por la DV en los últimos 15 años, dentro de los 120 días del inicio.</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card-h" style="font-family:'Syne',sans-serif;font-size:.85rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-bottom:.75rem">Etapa de Explotación</div>
+      <div class="resp-list">
+        <div class="resp-item"><div class="resp-bullet" style="background:var(--teal)"></div>
+          <div class="resp-text"><strong>Niveles de Servicio:</strong> Mantener todos los Estándares Técnicos y Niveles de Servicio exigidos en las Bases durante toda la vigencia del contrato, sujeto a medición por inspector fiscal.</div>
+        </div>
+        <div class="resp-item"><div class="resp-bullet" style="background:var(--teal)"></div>
+          <div class="resp-text"><strong>Sistema de cobro MLFF:</strong> Operar el sistema electrónico en todos los puntos de cobro desde la primera PSP. Interoperabilidad con red TAG nacional. Implementar PTT para usuarios poco frecuentes.</div>
+        </div>
+        <div class="resp-item"><div class="resp-bullet" style="background:var(--teal)"></div>
+          <div class="resp-text"><strong>Plataforma de atención de usuarios:</strong> Implementar canal de atención (presencial/remoto) desde la primera PSP. Especificaciones sujetas a aprobación del inspector fiscal.</div>
+        </div>
+        <div class="resp-item"><div class="resp-bullet" style="background:var(--teal)"></div>
+          <div class="resp-text"><strong>Plan de Conservación:</strong> Elaborar Plan y Programa de Conservación de las Obras con 90 días de anticipación a cada PSP. Actualizar con cada nueva puesta en servicio.</div>
+        </div>
+        <div class="resp-item"><div class="resp-bullet" style="background:var(--teal)"></div>
+          <div class="resp-text"><strong>Informes trimestrales y BIM:</strong> Informe de Seguimiento Trimestral de cumplimiento de Estándares de Servicio, más informes mensuales de Estado del Arte BIM durante construcción.</div>
+        </div>
+        <div class="resp-item"><div class="resp-bullet" style="background:var(--teal)"></div>
+          <div class="resp-text"><strong>Acceso policial y ministerio público:</strong> Obligación legal de proveer acceso en tiempo real a Carabineros y el Ministerio Público a información de placas, matrículas y cámaras del sistema de cobro.</div>
+        </div>
+        <div class="resp-item"><div class="resp-bullet" style="background:var(--teal)"></div>
+          <div class="resp-text"><strong>Transferencia al término:</strong> Traspasar al MOP todos los bienes afectos a la concesión, permisos y licencias en óptimas condiciones, conforme al inventario de bienes llevado durante toda la concesión.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- end .page -->
+
+<footer class="footer">
+  <strong style="color:#9DB5CF">Concesión Vial Ruta Pie de Monte</strong> · Dirección General de Concesiones MOP · República de Chile<br>
+  Este dossier es un resumen ejecutivo elaborado a partir de las Bases de Licitación (BALI) Refundidas CA1–CA4, versión noviembre 2025.<br>
+  Para información oficial y vinculante, referirse al texto íntegro de las Bases de Licitación.
+</footer>
+
+</body>
+</html>
