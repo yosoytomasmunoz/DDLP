@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flujo Proceso de Concesiones — DGC MOP</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#042C53;--blue:#185FA5;--blue-mid:#0C447C;--blue-lt:#E6F1FB;--blue-bdr:#B5D4F4;
+  --teal:#0F6E56;--teal-lt:#E1F5EE;--teal-bdr:#9FE1CB;
+  --amber:#854F0B;--amber-lt:#FAEEDA;--amber-bdr:#EF9F27;
+  --coral:#993C1D;--coral-lt:#FAECE7;--coral-bdr:#F0997B;
+  --purp:#534AB7;--purp-lt:#EEEDFE;--purp-bdr:#AFA9EC;
+  --fiscal:#26215C;--fiscal-lt:#EEEDFE;--fiscal-bdr:#7F77DD;
+  --dark:#1A202C;--muted:#64748B;--border:#E2E8F0;--white:#FFFFFF;
+}
+html{font-size:14px}
+body{font-family:'DM Sans',sans-serif;background:#EEF2F7;color:var(--dark);min-height:100vh;padding:2rem 1rem 4rem}
+
+/* header */
+.page-header{max-width:1360px;margin:0 auto 2rem;display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.ph-eyebrow{font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.ph-title{font-size:1.7rem;font-weight:600;color:var(--navy);line-height:1.2}
+.ph-sub{font-size:13px;color:var(--muted);margin-top:2px}
+.ph-badges{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.badge{font-size:10px;font-weight:600;letter-spacing:.04em;padding:4px 10px;border-radius:20px;white-space:nowrap}
+.badge-blue{background:var(--blue-lt);color:var(--blue-mid);border:1px solid var(--blue-bdr)}
+.badge-teal{background:var(--teal-lt);color:var(--teal);border:1px solid var(--teal-bdr)}
+.badge-fiscal{background:var(--fiscal-lt);color:var(--fiscal);border:1px solid var(--fiscal-bdr)}
+
+/* legend */
+.legend{max-width:1360px;margin:0 auto 2rem;display:flex;gap:16px;align-items:center;flex-wrap:wrap;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:.6rem 1.2rem}
+.legend-title{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.leg-item{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--dark)}
+.leg-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0}
+.leg-diamond{width:12px;height:12px;border-radius:2px;flex-shrink:0;transform:rotate(45deg)}
+.chip{display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;letter-spacing:.04em;padding:2px 7px;border-radius:4px;flex-shrink:0;min-width:28px}
+.chip-si{background:var(--teal-lt);color:var(--teal);border:1px solid var(--teal-bdr)}
+.chip-no{background:var(--coral-lt);color:var(--coral);border:1px solid var(--coral-bdr)}
+.chip-loop{background:var(--purp-lt);color:var(--purp);border:1px solid var(--purp-bdr)}
+
+/* 3-col grid */
+.workflow{max-width:1360px;margin:0 auto;display:grid;grid-template-columns:1fr 60px 1fr;gap:0}
+
+/* lane headers */
+.lane-header{display:flex;align-items:center;gap:10px;padding:.65rem 1.2rem;border-radius:10px 10px 0 0}
+.lh-left{background:var(--navy)}.lh-right{background:var(--blue-mid)}
+.lane-label{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--white)}
+.lane-sub{font-size:10.5px;color:rgba(255,255,255,.6)}
+
+/* lane bodies */
+.lane{display:flex;flex-direction:column}
+.lane-left{background:linear-gradient(180deg,#e8eef6,#f0f4f9);border-radius:0 0 0 12px;border:1px solid var(--blue-bdr);border-top:none}
+.lane-right{background:linear-gradient(180deg,#e4f0eb,#eef5f1);border-radius:0 0 12px 0;border:1px solid var(--teal-bdr);border-top:none}
+
+/* step card */
+.step{position:relative;margin:9px 10px;border-radius:10px;border:1px solid var(--border);background:var(--white);padding:12px 14px 12px 46px;transition:box-shadow .18s,transform .18s;animation:fadeUp .4s ease both}
+.step:hover{box-shadow:0 6px 20px rgba(4,44,83,.12);transform:translateY(-2px)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.step-num{position:absolute;left:12px;top:50%;transform:translateY(-50%);width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'DM Mono',monospace;font-size:10px;font-weight:500}
+.step-title{font-size:12.5px;font-weight:600;color:var(--dark);line-height:1.35;margin-bottom:3px}
+.step-body{font-size:11px;color:var(--muted);line-height:1.6}
+.step-tag{display:inline-block;font-size:9.5px;font-weight:600;letter-spacing:.04em;padding:2px 7px;border-radius:4px;margin-bottom:5px}
+.step-blue{border-left:3px solid var(--blue)}.step-blue .step-num{background:var(--blue-lt);color:var(--blue)}
+.step-teal{border-left:3px solid var(--teal)}.step-teal .step-num{background:var(--teal-lt);color:var(--teal)}
+.step-navy{border-left:3px solid var(--navy)}.step-navy .step-num{background:var(--navy);color:var(--white)}
+
+/* fiscal outline highlight */
+.fiscal-step{outline:2px solid var(--fiscal-bdr);outline-offset:2px}
+
+/* fiscal inline tag */
+.fiscal-tag{display:flex;align-items:center;gap:6px;margin-top:8px;padding:5px 8px;background:var(--fiscal-lt);border-radius:6px;border:1px dashed var(--fiscal-bdr);font-size:10px;color:var(--fiscal);font-weight:600}
+
+/* decision card */
+.decision{position:relative;margin:9px 10px;border-radius:10px;border:1.5px solid var(--amber-bdr);background:var(--amber-lt);padding:12px 14px 12px 46px;animation:fadeUp .4s ease both}
+.decision::before{content:'';position:absolute;left:12px;top:50%;transform:translateY(-50%) rotate(45deg);width:22px;height:22px;background:var(--amber-bdr);border-radius:3px}
+.decision-q{font-size:12px;font-weight:600;color:var(--amber);line-height:1.35;margin-bottom:4px}
+.decision-note{font-size:10.5px;color:var(--dark);line-height:1.55;margin-bottom:8px}
+.outcomes{display:flex;flex-direction:column;gap:5px}
+.outcome{display:flex;align-items:flex-start;gap:6px;font-size:10.5px;color:var(--dark);line-height:1.5}
+
+/* loop box */
+.loop-box{margin-top:9px;padding:8px 10px;border-radius:7px;background:var(--purp-lt);border:1.5px dashed var(--purp-bdr);font-size:10.5px;color:var(--purp);line-height:1.6;display:flex;align-items:flex-start;gap:7px}
+
+/* sub-steps */
+.sub-steps{display:flex;flex-direction:column;gap:4px;margin-top:8px}
+.sub-step{display:flex;align-items:flex-start;gap:8px;font-size:10.5px;color:var(--muted);line-height:1.55}
+.sub-dot{width:5px;height:5px;border-radius:50%;margin-top:5px;flex-shrink:0}
+
+/* phase label */
+.phase-label{margin:6px 10px 0;font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:6px}
+.phase-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* full-row */
+.full-row{grid-column:1/-1;display:flex;justify-content:center;padding:0 1rem}
+
+/* vline & arrow */
+.vl{width:2px;margin:0 auto}
+.vl-blue{background:var(--blue-bdr)}.vl-teal{background:var(--teal-bdr)}.vl-border{background:var(--border)}.vl-fiscal{background:var(--fiscal-bdr)}
+.arr{width:28px;height:28px;background:var(--white);border:1.5px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--muted);margin:0 auto}
+
+/* center lane */
+.center-lane{display:flex;flex-direction:column;align-items:center;gap:0}
+.retro-circle{width:34px;height:34px;border-radius:50%;background:var(--purp-lt);border:2px solid var(--purp);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;color:var(--purp)}
+.retro-badge{padding:5px 3px;background:var(--navy);color:var(--white);border-radius:4px;font-size:8px;font-weight:600;letter-spacing:.03em;writing-mode:vertical-rl;text-orientation:mixed;text-align:center;min-height:70px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+/* fiscal hub */
+.fiscal-hub-card{background:var(--fiscal-lt);border:2px solid var(--fiscal-bdr);border-radius:12px;padding:14px 20px 14px 54px;position:relative;box-shadow:0 0 0 4px rgba(127,119,221,.12)}
+.fiscal-hub-card::before{content:'📊';position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:22px}
+.fiscal-hub-title{font-size:13px;font-weight:700;color:var(--fiscal);letter-spacing:.02em;margin-bottom:3px}
+.fiscal-hub-sub{font-size:11px;color:var(--purp);line-height:1.6}
+.fiscal-feeds{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}
+.fiscal-chip{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:600;padding:3px 9px;border-radius:20px;background:var(--white);border:1.5px solid var(--fiscal-bdr);color:var(--fiscal)}
+.fiscal-chip::before{content:'→'}
+
+/* end node */
+.end-node{border-radius:30px;background:var(--navy);color:var(--white);padding:11px 20px;text-align:center;font-size:12.5px;font-weight:600;letter-spacing:.04em;animation:fadeUp .4s ease both}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div>
+    <div class="ph-eyebrow">Dirección General de Concesiones — MOP</div>
+    <div class="ph-title">Flujo de Desarrollo y Licitación de Proyectos</div>
+    <div class="ph-sub">Desde identificación del proyecto hasta adjudicación y evaluación ex post</div>
+  </div>
+  <div class="ph-badges">
+    <span class="badge badge-blue">Carril Estudios</span>
+    <span class="badge badge-teal">Carril Licitatorio</span>
+    <span class="badge badge-fiscal">Compromisos Fiscales</span>
+  </div>
+</div>
+
+<div class="legend">
+  <span class="legend-title">Leyenda</span>
+  <div class="leg-item"><div class="leg-dot" style="background:var(--blue-lt);border:2px solid var(--blue)"></div>Paso — Estudios</div>
+  <div class="leg-item"><div class="leg-dot" style="background:var(--teal-lt);border:2px solid var(--teal)"></div>Paso — Licitatorio</div>
+  <div class="leg-item"><div class="leg-dot" style="background:var(--navy)"></div>Paso transversal</div>
+  <div class="leg-item"><div class="leg-diamond" style="background:var(--amber-bdr)"></div>Decisión</div>
+  <div class="leg-item"><div class="leg-dot" style="background:var(--fiscal-lt);border:2px solid var(--fiscal-bdr)"></div>Compromisos Fiscales</div>
+  <div class="leg-item"><span class="chip chip-si">SÍ</span>Avanza</div>
+  <div class="leg-item"><span class="chip chip-no">NO</span>Ajuste / Aplazamiento</div>
+  <div class="leg-item"><span class="chip chip-loop">↺</span>Itera (Relicitación)</div>
+</div>
+
+<div class="workflow">
+
+<!-- START -->
+<div class="full-row" style="margin-bottom:16px;margin-top:4px">
+  <div class="step step-navy" style="max-width:540px;margin:0 auto;text-align:center;padding-left:52px">
+    <div class="step-num" style="background:var(--navy);color:white">1</div>
+    <div class="step-title" style="font-size:14px">Inicio del Proyecto</div>
+    <div class="step-body">Identificación y formulación inicial. Desarrollo del perfil técnico y económico.</div>
+  </div>
+</div>
+
+<div class="full-row" style="margin-bottom:14px">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+    <div class="vl vl-border" style="height:18px"></div><div class="arr">↓</div><div class="vl vl-border" style="height:18px"></div>
+  </div>
+</div>
+
+<!-- DECISION 1: Rentabilidad Social -->
+<div class="full-row" style="margin-bottom:14px">
+  <div class="decision" style="max-width:680px;margin:0 auto">
+    <div style="position:absolute;left:12px;top:50%;transform:translateY(-50%) rotate(45deg);width:22px;height:22px;background:var(--amber-bdr);border-radius:3px"></div>
+    <div class="decision-q">¿El proyecto tiene Rentabilidad Social?</div>
+    <div class="outcomes">
+      <div class="outcome"><span class="chip chip-si" style="margin-top:2px">SÍ</span><span>Avanza al análisis de compatibilidad fiscal (paso 3).</span></div>
+      <div class="outcome"><span class="chip chip-no" style="margin-top:2px">NO</span>
+        <span><strong>¿Es relicitación?</strong><br>
+        <strong>Sí →</strong> Se ajustan condiciones técnicas (CAPEX/OPEX, NdS, inducción demanda) y se retoma el flujo con proyecto mejorado.<br>
+        <strong>No →</strong> Se aplaza el inicio del proyecto.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="full-row" style="margin-bottom:14px">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+    <div class="vl vl-border" style="height:18px"></div><div class="arr">↓</div><div class="vl vl-border" style="height:18px"></div>
+  </div>
+</div>
+
+<!-- DECISION 2: Compatibilidad Fiscal — con loop de relicitación -->
+<div class="full-row" style="margin-bottom:14px">
+  <div class="decision" style="max-width:740px;margin:0 auto">
+    <div style="position:absolute;left:12px;top:50%;transform:translateY(-50%) rotate(45deg);width:22px;height:22px;background:var(--amber-bdr);border-radius:3px"></div>
+    <div class="decision-q">¿Compatible con Análisis de Compromisos Fiscales?</div>
+    <div class="decision-note">Se comparan exigencias económicas del proyecto con pasivos contingentes comprometidos y eventuales de otros proyectos.</div>
+    <div class="outcomes">
+      <div class="outcome"><span class="chip chip-si" style="margin-top:2px">SÍ</span><span>Avanza al inicio de estudios (paso 4).</span></div>
+      <div class="outcome"><span class="chip chip-no" style="margin-top:2px">NO</span>
+        <span>Se ajustan condiciones mínimas (CAPEX/OPEX, NdS, mayores ingresos).</span>
+      </div>
+    </div>
+    <!-- LOOP: relicitación itera -->
+    <div class="loop-box">
+      <span style="font-size:16px;flex-shrink:0">↺</span>
+      <div>
+        <strong>Relicitación — itera hasta cumplir:</strong> Se ajustan condiciones mínimas para compatibilidad presupuestaria y se reverifica rentabilidad social.
+        El ciclo se repite hasta que <em>ambas condiciones se cumplan simultáneamente</em>.
+        <br><span style="font-size:10px;opacity:.85">Si tras los ajustes no se logra rentabilidad social → aplazamiento. Para proyectos nuevos, el ajuste es más limitado antes de aplazar.</span>
+        <div style="display:flex;gap:6px;margin-top:7px;flex-wrap:wrap">
+          <span style="display:inline-flex;align-items:center;gap:4px;font-size:9.5px;font-weight:700;background:white;padding:2px 8px;border-radius:4px;border:1px solid var(--purp-bdr)">↺ Ajustar CAPEX/OPEX</span>
+          <span style="display:inline-flex;align-items:center;gap:4px;font-size:9.5px;font-weight:700;background:white;padding:2px 8px;border-radius:4px;border:1px solid var(--purp-bdr)">↺ Revisar NdS</span>
+          <span style="display:inline-flex;align-items:center;gap:4px;font-size:9.5px;font-weight:700;background:white;padding:2px 8px;border-radius:4px;border:1px solid var(--purp-bdr)">↺ Ampliar ingresos</span>
+          <span style="display:inline-flex;align-items:center;gap:4px;font-size:9.5px;font-weight:700;background:white;padding:2px 8px;border-radius:4px;border:1px solid var(--coral-bdr);color:var(--coral)">✗ No converge → Aplazar</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PARALLEL SPLIT -->
+<div class="full-row" style="margin-bottom:4px">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+    <div class="vl vl-border" style="height:12px"></div>
+    <div style="padding:4px 16px;background:var(--navy);color:white;border-radius:20px;font-size:10px;font-weight:600;letter-spacing:.05em">INICIO DE CARRILES PARALELOS</div>
+  </div>
+</div>
+<div style="grid-column:1/-1;display:flex;gap:0;margin-bottom:0">
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center">
+    <div class="vl vl-blue" style="height:18px"></div>
+    <div style="padding:3px 12px;background:var(--blue);color:white;border-radius:4px;font-size:9.5px;font-weight:600;letter-spacing:.05em">CARRIL ESTUDIOS</div>
+  </div>
+  <div style="width:60px"></div>
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center">
+    <div class="vl vl-teal" style="height:18px"></div>
+    <div style="padding:3px 12px;background:var(--teal);color:white;border-radius:4px;font-size:9.5px;font-weight:600;letter-spacing:.05em">CARRIL LICITATORIO</div>
+  </div>
+</div>
+
+<!-- LANE HEADERS -->
+<div class="lane-header lh-left"><div><div class="lane-label">Carril de Estudios</div><div class="lane-sub">Prefactibilidad · Anteproyecto · MDSF</div></div></div>
+<div style="background:transparent"></div>
+<div class="lane-header lh-right"><div><div class="lane-label">Carril Licitatorio</div><div class="lane-sub">Pliego · Mercado · Bases · Proceso · Adjudicación</div></div></div>
+
+<!-- LEFT LANE -->
+<div class="lane lane-left">
+
+  <div class="step step-blue" style="animation-delay:.05s">
+    <div class="step-num">4</div>
+    <div class="step-tag" style="background:var(--blue-lt);color:var(--blue);border:1px solid var(--blue-bdr)">Prefactibilidad</div>
+    <div class="step-title">Inicio Estudio Integral</div>
+    <div class="step-body">Se lanza el estudio integral considerando las condiciones técnicas mínimas para compatibilidad con compromisos fiscales definidas en los pasos 2 y 3.</div>
+  </div>
+
+  <div class="vl vl-blue" style="height:14px"></div>
+
+  <!-- PASO 5: actualiza planilla -->
+  <div class="step step-blue fiscal-step" style="animation-delay:.10s">
+    <div class="step-num">5</div>
+    <div class="step-tag" style="background:var(--blue-lt);color:var(--blue);border:1px solid var(--blue-bdr)">Prefactibilidad</div>
+    <div class="step-title">Fin Etapa Prefactibilidad</div>
+    <div class="step-body">Revisión de compatibilidad con exigencias fiscales. Se establecen condiciones mínimas para compatibilidad presupuestaria que alimentarán el anteproyecto.</div>
+    <div class="fiscal-tag"><span style="font-size:15px">📊</span>Actualiza → Planilla de Compromisos Fiscales</div>
+  </div>
+
+  <div class="vl vl-blue" style="height:14px"></div>
+
+  <div class="step step-blue" style="animation-delay:.15s">
+    <div class="step-num">6</div>
+    <div class="step-tag" style="background:var(--blue-lt);color:var(--blue);border:1px solid var(--blue-bdr)">Anteproyecto</div>
+    <div class="step-title">Inicio de Anteproyecto</div>
+    <div class="step-body">Desarrollo del anteproyecto con condiciones técnicas y económicas acordadas.</div>
+    <div class="sub-steps">
+      <div class="sub-step"><div class="sub-dot" style="background:var(--purp)"></div><span style="color:var(--purp);font-weight:500">Retroalimentación de obs. técnicas del mercado al consultor para análisis e inclusión.</span></div>
+      <div class="sub-step"><div class="sub-dot" style="background:var(--blue)"></div>Tramitación de Rentabilidad Social ante el MDSF.</div>
+    </div>
+  </div>
+
+  <div class="vl vl-blue" style="height:14px"></div>
+
+  <div class="step step-blue" style="animation-delay:.20s">
+    <div class="step-num">7</div>
+    <div class="step-tag" style="background:var(--blue-lt);color:var(--blue);border:1px solid var(--blue-bdr)">Anteproyecto</div>
+    <div class="step-title">Conclusión del Anteproyecto</div>
+    <div class="step-body">El anteproyecto concluye en paralelo con la tramitación de bases de licitación (paso 8f del carril licitatorio).</div>
+  </div>
+
+  <div style="flex:1"></div>
+</div>
+
+<!-- CENTER LANE -->
+<div class="center-lane">
+  <div class="vl" style="flex:2;background:linear-gradient(180deg,var(--blue-bdr),var(--teal-bdr))"></div>
+  <div class="retro-circle">↺</div>
+  <div style="font-size:7.5px;color:var(--purp);text-align:center;max-width:52px;line-height:1.3;font-weight:600;padding:2px 0">Retro-alimentación técnica</div>
+  <div class="vl" style="flex:2;background:linear-gradient(180deg,var(--teal-bdr),var(--blue-bdr))"></div>
+  <div class="retro-badge">SINCRONÍA</div>
+  <div class="vl" style="flex:1;background:var(--border)"></div>
+</div>
+
+<!-- RIGHT LANE -->
+<div class="lane lane-right">
+
+  <div class="phase-label">Pre-licitación</div>
+
+  <div class="step step-teal" style="animation-delay:.05s">
+    <div class="step-num" style="background:var(--teal-lt);color:var(--teal)">8a</div>
+    <div class="step-tag" style="background:var(--teal-lt);color:var(--teal);border:1px solid var(--teal-bdr)">Pliego Preliminar</div>
+    <div class="step-title">Elaboración del Pliego Preliminar</div>
+    <div class="step-body">Brochure no vinculante con DIPRES: obras, condiciones económicas, riesgos, avances territoriales/ambientales y puntos críticos.</div>
+  </div>
+
+  <div class="vl vl-teal" style="height:12px"></div>
+
+  <div class="step step-teal" style="animation-delay:.10s">
+    <div class="step-num" style="background:var(--teal-lt);color:var(--teal)">8b</div>
+    <div class="step-tag" style="background:var(--teal-lt);color:var(--teal);border:1px solid var(--teal-bdr)">Mercado</div>
+    <div class="step-title">Presentación al Mercado</div>
+    <div class="step-body">Presentación a mercado financiero, constructores y operadores para recibir retroalimentación.</div>
+    <div class="sub-steps">
+      <div class="sub-step"><div class="sub-dot" style="background:var(--teal)"></div>Recepción de observaciones del mercado.</div>
+      <div class="sub-step"><div class="sub-dot" style="background:var(--purp)"></div><span style="color:var(--purp);font-weight:500">→ Obs. técnicas retroalimentadas al consultor del anteproyecto.</span></div>
+      <div class="sub-step"><div class="sub-dot" style="background:var(--teal)"></div>Análisis de obs. económico-financieras para inclusión en BALI.</div>
+    </div>
+  </div>
+
+  <div class="vl vl-teal" style="height:12px"></div>
+
+  <!-- PASO 8c: actualiza planilla -->
+  <div class="step step-teal fiscal-step" style="animation-delay:.15s">
+    <div class="step-num" style="background:var(--teal-lt);color:var(--teal)">8c</div>
+    <div class="step-tag" style="background:var(--teal-lt);color:var(--teal);border:1px solid var(--teal-bdr)">Cierre Fiscal</div>
+    <div class="step-title">Condiciones Económicas con DIPRES</div>
+    <div class="step-body">Se concuerdan condiciones económicas finales con DIPRES.</div>
+    <div class="fiscal-tag"><span style="font-size:15px">📊</span>Actualiza → Planilla de Compromisos Fiscales</div>
+  </div>
+
+  <div class="vl vl-teal" style="height:12px"></div>
+
+  <div class="step step-teal" style="animation-delay:.20s">
+    <div class="step-num" style="background:var(--teal-lt);color:var(--teal)">8e</div>
+    <div class="step-tag" style="background:var(--teal-lt);color:var(--teal);border:1px solid var(--teal-bdr)">Bases</div>
+    <div class="step-title">Desarrollo y Tramitación de Bases (BALI)</div>
+    <div class="step-body">Desarrollo final y tramitación ante DIPRES, Presidencia y Contraloría (CGR).</div>
+  </div>
+
+  <div class="phase-label" style="margin-top:12px">Proceso Licitatorio</div>
+
+  <div class="step step-navy" style="animation-delay:.25s">
+    <div class="step-num">8g</div>
+    <div class="step-title">Inicio Proceso Licitatorio</div>
+    <div class="step-body">Apertura formal. Publicación del llamado y documentos en el mercado.</div>
+  </div>
+
+  <div class="vl vl-border" style="height:10px"></div>
+
+  <div class="step step-navy" style="animation-delay:.27s">
+    <div class="step-num">8h</div>
+    <div class="step-title">Sesiones Técnicas de Aclaración (STA)</div>
+    <div class="step-body">Instancias colectivas de clarificación. Todo lo tratado integra los antecedentes del contrato como Circular Aclaratoria.</div>
+  </div>
+
+  <div class="vl vl-border" style="height:10px"></div>
+
+  <div class="step step-navy" style="animation-delay:.29s">
+    <div class="step-num">8i</div>
+    <div class="step-title">Consultas y Aclaraciones</div>
+    <div class="step-body">Período de preguntas escritas y circulares aclaratorias de la DGC.</div>
+  </div>
+
+  <div class="vl vl-border" style="height:10px"></div>
+
+  <div class="step step-navy" style="animation-delay:.31s">
+    <div class="step-num">8j</div>
+    <div class="step-title">Recepción y Evaluación de Ofertas</div>
+    <div class="step-body">Apertura técnica, evaluación y apertura económica según criterios de las BALI.</div>
+  </div>
+
+  <div style="flex:1"></div>
+</div><!-- end lane-right -->
+
+<!-- CONVERGENCIA -->
+<div style="grid-column:1/-1;display:flex;justify-content:center;margin:6px 0 12px">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+    <div style="display:flex;gap:120px">
+      <div class="vl vl-blue" style="height:20px"></div>
+      <div class="vl vl-teal" style="height:20px"></div>
+    </div>
+    <div style="display:flex;align-items:center">
+      <div style="width:130px;height:2px;background:linear-gradient(90deg,var(--blue),var(--navy))"></div>
+      <div style="width:130px;height:2px;background:linear-gradient(90deg,var(--navy),var(--teal))"></div>
+    </div>
+    <div class="vl vl-border" style="height:14px"></div>
+  </div>
+</div>
+
+<!-- ADJUDICACIÓN -->
+<div class="full-row" style="margin-bottom:10px">
+  <div class="step step-navy" style="max-width:560px;margin:0 auto;padding-left:52px">
+    <div class="step-num" style="background:var(--navy);color:white">8k</div>
+    <div class="step-title" style="font-size:13.5px">Adjudicación</div>
+    <div class="step-body">Resolución de adjudicación, notificación al adjudicatario y firma del contrato de concesión.</div>
+  </div>
+</div>
+
+<div class="full-row" style="margin-bottom:10px">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+    <div class="vl vl-border" style="height:16px"></div><div class="arr">↓</div><div class="vl vl-border" style="height:16px"></div>
+  </div>
+</div>
+
+<!-- EVALUACIÓN EX POST: actualiza planilla -->
+<div class="full-row" style="margin-bottom:14px">
+  <div class="step step-teal fiscal-step" style="max-width:560px;margin:0 auto;padding-left:52px">
+    <div class="step-num" style="background:var(--teal-lt);color:var(--teal)">8l</div>
+    <div class="step-title" style="font-size:13.5px">Evaluación Ex Post</div>
+    <div class="step-body">Análisis de resultados del proceso licitatorio y condiciones del contrato adjudicado.</div>
+    <div class="fiscal-tag"><span style="font-size:15px">📊</span>Actualiza → Planilla de Compromisos Fiscales (cierre de pasivos)</div>
+  </div>
+</div>
+
+<!-- FISCAL HUB CONVERGENCE ARROWS -->
+<div style="grid-column:1/-1;display:flex;justify-content:center;margin-bottom:4px">
+  <div style="display:flex;flex-direction:column;align-items:center">
+    <div style="display:flex;align-items:flex-end;gap:54px">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+        <div style="font-size:9px;font-weight:700;color:var(--fiscal);background:var(--fiscal-lt);padding:2px 7px;border-radius:4px;border:1px solid var(--fiscal-bdr)">Paso 5</div>
+        <div class="vl vl-fiscal" style="height:18px"></div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+        <div style="font-size:9px;font-weight:700;color:var(--fiscal);background:var(--fiscal-lt);padding:2px 7px;border-radius:4px;border:1px solid var(--fiscal-bdr)">Paso 8c</div>
+        <div class="vl vl-fiscal" style="height:18px"></div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+        <div style="font-size:9px;font-weight:700;color:var(--fiscal);background:var(--fiscal-lt);padding:2px 7px;border-radius:4px;border:1px solid var(--fiscal-bdr)">Paso 8l</div>
+        <div class="vl vl-fiscal" style="height:18px"></div>
+      </div>
+    </div>
+    <div style="width:220px;height:2px;background:var(--fiscal-bdr)"></div>
+    <div class="vl vl-fiscal" style="height:14px"></div>
+    <div style="font-size:11px;color:var(--fiscal);font-weight:700">▼</div>
+  </div>
+</div>
+
+<!-- FISCAL HUB CARD -->
+<div class="full-row" style="margin-bottom:14px">
+  <div class="fiscal-hub-card" style="max-width:680px;width:100%">
+    <div class="fiscal-hub-title">Planilla de Compromisos Fiscales</div>
+    <div class="fiscal-hub-sub">
+      Registro centralizado y actualizado de los pasivos contingentes comprometidos del sistema de concesiones.
+      Instrumento que valida la compatibilidad presupuestaria de cada proyecto en cada etapa del proceso.
+    </div>
+    <div class="fiscal-feeds">
+      <span class="fiscal-chip">Fin Prefactibilidad (5): condiciones mínimas acordadas</span>
+      <span class="fiscal-chip">Acuerdo DIPRES (8c): condiciones económicas finales</span>
+      <span class="fiscal-chip">Evaluación Ex Post (8l): cierre de pasivos del contrato</span>
+    </div>
+  </div>
+</div>
+
+<!-- ARROW TO END -->
+<div class="full-row" style="margin-bottom:14px">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:3px">
+    <div class="vl vl-border" style="height:16px"></div><div class="arr">↓</div><div class="vl vl-border" style="height:16px"></div>
+  </div>
+</div>
+
+<!-- END NODE -->
+<div class="full-row">
+  <div class="end-node" style="max-width:420px">✓ &nbsp;Concesión Adjudicada y Lista para Ejecución</div>
+</div>
+
+</div><!-- end workflow -->
+
+<!-- FOOTER NOTES -->
+<div style="max-width:1360px;margin:2rem auto 0;display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+  <div style="padding:1rem 1.2rem;background:var(--amber-lt);border:1px solid var(--amber-bdr);border-radius:10px;border-left:4px solid var(--amber-bdr);font-size:11.5px;color:var(--amber);line-height:1.7">
+    <strong>Carriles paralelos:</strong> El Carril Licitatorio inicia en un punto intermedio del anteproyecto. La retroalimentación entre carriles es bidireccional: las observaciones técnicas del mercado alimentan el anteproyecto, y las condiciones del anteproyecto determinan los parámetros económicos de las bases.
+  </div>
+  <div style="padding:1rem 1.2rem;background:var(--fiscal-lt);border:1px solid var(--fiscal-bdr);border-radius:10px;border-left:4px solid var(--fiscal-bdr);font-size:11.5px;color:var(--fiscal);line-height:1.7">
+    <strong>Planilla de Compromisos Fiscales:</strong> Se actualiza en tres momentos clave del ciclo (pasos 5, 8c y 8l), garantizando monitoreo continuo de la presión fiscal desde la prefactibilidad hasta el cierre contractual.
+  </div>
+</div>
+
+</body>
+</html>
